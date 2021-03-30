@@ -1,0 +1,24 @@
+PILE = 0x100
+M = 10
+set PILE, %sp
+set tab, %r1
+set M, %r2
+set 2, %r3
+call nb_occurrences
+stop : ba stop
+tab:     .word  3, 2, 7, 5, 2, 11, 6, 9, 4, 2
+nb_occurrences:push   %r5
+               push   %r6
+               clr    %r4
+               clr    %r5
+               loop:    cmp    %r5, %r2
+               bgeu   end_loop
+               ld     [%r1+%r5], %r6
+               cmp    %r6, %r3
+bne    suite
+inc    %r4
+suite:   inc    %r5
+ba     loop
+end_loop:  pop    %r6
+           pop    %r5
+           ret

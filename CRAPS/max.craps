@@ -1,0 +1,22 @@
+N = 11
+Pile = 0x200
+            set Pile, %sp
+            set tab, %r1
+            ld [%r1], %r2 //Max du tableau
+            clr %r3 // indice max
+            clr %r4 // indice 
+            call Max_Tab
+Stop:       ba Stop
+Max_Tab:    push %r1
+Boucle:     inc %r4
+            cmp %r4, N
+            bge FinBoucle
+            ld [%r4+%r1], %r5
+            cmp %r2, %r5
+            bgu FinSi
+            ld [%r4+%r1], %r2
+            mov %r4 , %r3
+FinSi     : ba Boucle
+FinBoucle : pop %r1
+            ret
+tab:        .word 0,76,-331,77,8,9,10,8,22,110,82919

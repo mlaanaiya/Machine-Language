@@ -1,0 +1,17 @@
+NB_CYCLES = 6
+PILE = 0x100
+LEDS = 0xB0000000
+ba    progp
+handler:  push  %r20 // compeur dans r19
+set   LEDS, %r20
+st %r19, [%r20]
+pop   %r20
+reti
+progp:  set PILE, %sp
+        clr    %r19
+        boucle : cmp  %r19, NB_CYCLES-1
+                 bne    incrementer
+                 clr    %r19
+                 ba     boucle
+                 incrementer:   inc    %r19
+        ba    boucle

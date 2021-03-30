@@ -1,0 +1,5 @@
+module cpm32(a[31..0],b[31..0]:usup,ssup,equ)
+	ucmp32(a[31..0],b[31..0]:usup,equ)
+   addsub32(a[31..0],b[31..0],1:s[31..0],C,V)
+   ssup = /s[31]*/equ*/C
+end module

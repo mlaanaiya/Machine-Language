@@ -1,0 +1,15 @@
+X = 12
+Y = 16
+set X, %r2
+set Y, %r3
+pour : cmp %r2, %r3
+       be finpour
+       Si : cmp %r2, %r3
+            bge sinon
+            subcc %r3, %r2, %r3
+            ba pour
+            sinon : subcc %r2, %r3, %r2
+            mov %r2, %r1
+            ba pour
+finpour :
+          ba finpour

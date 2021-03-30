@@ -1,0 +1,6 @@
+module addsub32(a[31..0],b[31..0],sub:s[31..0],C,V)
+	u[31..0]=/b[31..0]*sub+b[31..0]*/sub
+	adder32(a[31..0],u[31..0],sub:s[31..0],cout)
+	C=/sub*cout+/cout*sub
+	V=/sub*a[31]*b[31]*/s[31]+/sub*/a[31]*/b[31]*s[31]+sub*a[31]*/b[31]*/s[31]+sub*/a[31]*b[31]*s[31]
+end module

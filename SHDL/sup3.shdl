@@ -1,0 +1,6 @@
+module sup3(a[7..0],b[7..0],c[7..0]:max[7..0])
+	ucmp8(a[7..0],b[7..0]:sup_0,eq_0)
+   x[7..0] = sup_0*a[7..0] + /sup_0*b[7..0]
+   ucmp8(x[7..0],c[7..0]:sup_1,eq_1)
+   max[7..0] = sup_1*x[7..0] + /sup_1*c[7..0]
+end module

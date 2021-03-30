@@ -1,0 +1,15 @@
+SWITCHES = 0x90000000
+LEDS = 0xB0000000
+PILE = 0x200
+                    set PILE, %sp
+                    call afficher_leds_7_0
+afficher_leds_7_0:  push %r1
+                    push %r19
+                    set SWITCHES,%r20
+                    set LEDS,%r19
+                    ld [%r20],%r1
+                    and %r1, 0xFF, %r1
+                    st %r1, [%r19]
+                    pop %r19
+                    pop %r1
+                    ret

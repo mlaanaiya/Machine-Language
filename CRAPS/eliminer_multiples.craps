@@ -1,0 +1,24 @@
+// write your program here
+N=20
+//tab = 0x100
+set tab,%r1
+clr %r2
+clr %r4
+clr %r5
+clr %r6
+call eliminer
+Finloop: ba Finloop
+eliminer: set 1,%r2
+          set N,%r5
+          loop1:    cmp %r2,%r5
+                    bgeu Fin
+                    inc %r2
+                    mov %r2, %r6
+          loop2:    umulcc %r6,%r2,%r4
+                    cmp %r4,%r5
+                    bgeu loop1
+                    st %r0,[%r1+%r4]
+                    inc %r6
+                    ba loop2
+Fin : ret
+tab : .word 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19

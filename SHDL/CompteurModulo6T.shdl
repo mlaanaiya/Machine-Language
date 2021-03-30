@@ -1,0 +1,7 @@
+module CompteurModulo6T (rst,clk,en:cpt[2..0])
+	sclr = cpt[2]*/cpt[1]*cpt[0]
+	cpt[2..0] := /sclr*(cpt[2..0]*/T[2..0] + /cpt[2..0]*T[2..0]) on clk, reset when rst, enabled when en
+	T[0] = 1
+	T[1] = cpt[0]
+	T[2] = cpt[0]*cpt[1]
+end module

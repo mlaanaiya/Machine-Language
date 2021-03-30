@@ -1,0 +1,16 @@
+N = 11     
+tab = 0x100
+            set 2, %r3
+            set tab, %r1
+            set N, %r2
+            set 1, %r4
+            st %r0, [%r1]
+            st %r0, [%r1+%r4]
+TantQue :   umulcc %r3, %r3, %r5
+            cmp %r5, %r2
+            bgu fintq
+            st %r3, [%r1+%r3]
+            inc %r3
+            ba TantQue
+fintq :     ba fintq
+           .word 0,76,-331,77,8,9,10,8,22,110,82919

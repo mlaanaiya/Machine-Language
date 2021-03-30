@@ -1,0 +1,11 @@
+module divisible(clk,rst,init,a[31..0],b[31..0] : fini,divisible)
+	x[31..0] := init*a[31..0] + /init*xsupb*s[31..0] on clk reset when rst
+	debut := init on clk reset when rst
+   addsub := /init*(debut + xb) on clk reset when rst
+   xb := /init*addsub*xsupb on clk reset when rst
+   addsub32(x[31..0],b[31..0],1:s[31..0],C,V)
+   ucmp32(x[31..0],"00000000000000000000000000000000":xsupb,xeqb)
+	ucmp32(b[31..0],x[31..0]:bsupx,beqx)
+   fini := /init*(addsub*xeqb + addsub*bsupx + fini) on clk reset when rst
+   divisible = xeqb*fini
+end module

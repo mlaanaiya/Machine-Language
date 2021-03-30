@@ -1,0 +1,16 @@
+N = 10
+set T, %r1
+set N, %r2
+//ld [%r2], %r2
+clr %r3
+pour: cmp %r2, %r3
+be fpour
+ld [%r1], %r4
+sll %r4, 1, %r4
+st %r4, [%r1]
+inc %r1
+//add %r1, 4, %r1
+inccc %r3
+ba pour
+fpour: ba fpour
+T : .word 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0

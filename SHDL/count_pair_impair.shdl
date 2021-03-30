@@ -1,0 +1,8 @@
+module count_pair_impair (rst, clk, en, p : c[3..0])
+	X[3..0] := T[3..0] on clk reset when rst enabled when en
+	c[3..0] = X[3..0]
+   T[0] = /p
+	T[1] = X[0]*/p + p*/X[0]
+	T[2] = X[0]*X[1]*/p + p*/X[0]*X[1]
+	T[3] = X[0]*X[1]*X[2]*/p + p*(/X[0]*/X[1]*X[2])
+end module

@@ -1,0 +1,31 @@
+Pile = 0x200
+tab = 0x100
+N = 11
+            set tab, %r1
+            clr %r2    // indice i
+            set N-1, %r2
+            clr %r3    // indice j
+            clr %r4    // tab[j]
+            clr %r5    // tab[j+1]
+            call Tri_Tab
+Stop:       ba Stop
+
+loop:      set 0,%r3  // j=0
+            Tri_Tab : ld [%r1+%r3], %r4 // max<-tab[0]
+	                   add %r3, 1, %r9
+                      ld [%r1+%r9], %r5 
+                      cmp %r4, %r5 // Comparaison de tab[index] et max
+	                   ble finsi
+	                   st %r4, [%r1+%r9]
+	                   st %r5, [%r1+%r3]
+                      finsi :  inc %r3
+	                   cmp %r3, %r2
+                      blu Tri_Tab
+                      dec %r2 // i<-i-1
+	                   set 0, %r8
+	                   cmp %r8, %r2 // i>0
+                      blu loop  
+finloop :  pop %r1
+            ret
+.org tab
+.word 0,76,-331,77,8,9,10,8,22,110,82919

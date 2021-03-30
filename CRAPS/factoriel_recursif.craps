@@ -1,0 +1,21 @@
+// programme principal
+PILE = 0x200 // le fond de pile à l’adresse 0x200
+N = 5
+       set PILE, %sp
+       set N, %r1
+       call factorielle
+
+Stop : ba Stop
+factorielle: push %r1
+             cmp %r1, 1
+             bleu arret1
+             dec %r1
+             push %r28
+             call factorielle
+             pop %r28
+             inc %r1
+             umulcc %r1, %r2, %r2
+             ba retour
+arret1: set 1, %r2             
+retour:  pop %r1
+         ret

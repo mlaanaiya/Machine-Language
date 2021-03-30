@@ -1,0 +1,4 @@
+module count0_9(rst, clk, en : s[3..0])
+	sclr = s[0]*/s[1]*/s[2]*s[3]
+   count4Z(rst, clk, en, sclr : s[3..0]) 
+end module

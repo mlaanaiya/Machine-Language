@@ -1,0 +1,23 @@
+module sequenceur(rst, clk, ir[31..16], N, Z, V, C : fetch, decode, pcplus1, adresse, branch, areg[3..0], breg[3..0], dreg[3..0], ualcmd[3..0], dbusin[1..0], write, setflags)
+fetch := pcplus1 on clk set when rst
+decode := fetch on clk reset when rst
+pcplus1 := (setflags + decode24 + decodeld + decodest + branch) on clk reset when rst
+decode2pcplus1 = decode * /ir[31]
+decodeldst = decode * ir[31] * /ir[30] * /ir[29]
+decode24 = decode * ir[31] * ir[30] * /ir[29] * /ir[28] //set
+decodeld = adresse * /ir[28] //load
+decodest = adresse * ir[28] //store
+bne = decode*ir[31]*/ir[30]*/ir[29]*ir[28]
+adressebne := bne on clk reset when rst
+//deplacement24 =
+adresse := decodeldst on clk reset when rst
+setflags = decode2pcplus1
+areg[3..0] = fetch*"1110" + setflags*ir[23..20] + pcplus1*"1110" + decode24*"1111" + decodest*"1100" + decodeld*"1100" + decodeldst*ir[23..20]
+breg[3..0] = fetch*"0000" + setflags*ir[19..16] + pcplus1*"0001" + decode24*"0000" + decodest*ir[27..24] + decodeld*"0000" + decodeldst*ir[19..16]
+dreg[3..0] = fetch*"1111" + setflags*ir[27..24] + pcplus1*"1110" + decode24*ir[27..24] + decodest*"0000" + decodeld*ir[27..24] + decodeldst*"1100"
+ualcmd[3..0] = fetch*"0000" + setflags*ir[31..28] + pcplus1*"0000" + decode24*"1100" + decodeld*"0000" + decodest*"0000" + decodeldst*"0000"
+dbusin[1..0] = fetch*"10" + setflags*"01" + pcplus1*"01" + decode24*"01" + decodeld*"10" + decodest*"11" + decodeldst*"01"
+branch = 0
+branch("1110", N, Z, V, C : branch1)
+write = fetch*"0" + setflags*"0" + pcplus1*"0" + decode24*"0" + decodeld*"0" + decodest*"1" + adresse*"0"
+end module

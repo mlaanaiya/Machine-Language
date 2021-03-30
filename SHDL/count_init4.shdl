@@ -1,0 +1,8 @@
+module count_init4 (rst, clk, en, init, e[3..0]: c[3..0])
+	X[3..0] := T[3..0]*/X[3..0] + /T[3..0]*X[3..0] on clk reset when rst enabled when en
+	c[3..0] = X[3..0]
+   T[0]=/init + init*(e[0]*/X[0] + /e[0]*X[0])
+   T[1]=X[0]*/init + init*(e[1]*/X[1] + /e[1]*X[1])
+   T[2]=X[1]*X[0]*/init + init*(e[2]*/X[2] + /e[2]*X[2])
+   T[3]=X[2]*X[1]*X[0]*/init + init*(e[3]*/X[3] + /e[3]*X[3])
+end module

@@ -1,0 +1,13 @@
+module count8_b1_b2(rst, clk, encount, InitAd, ad1[7..0], ad2[7..0] : adCour[7..0])
+	X[7..0] := T[7..0]*/X[7..0] + /T[7..0]*X[7..0] on clk reset when rst
+	adCour[7..0] = X[7..0]
+	ucmp8(ad2[7..0],adCour[7..0]:sup,equ)
+   T[0]=/InitAd*encount*sup + InitAd*/encount*(ad1[0]*/X[0] + /ad1[0]*X[0])
+   T[1]=X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[1]*/X[1] + /ad1[1]*X[1])
+   T[2]=X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[2]*/X[2] + /ad1[2]*X[2])
+   T[3]=X[2]*X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[3]*/X[3] + /ad1[3]*X[3])
+	T[4]=X[3]*X[2]*X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[4]*/X[4] + /ad1[4]*X[4])
+	T[5]=X[4]*X[3]*X[2]*X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[5]*/X[5] + /ad1[5]*X[5])
+	T[6]=X[5]*X[4]*X[3]*X[2]*X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[6]*/X[6] + /ad1[6]*X[6])
+	T[7]=X[6]*X[5]*X[4]*X[3]*X[2]*X[1]*X[0]*/InitAd*encount*sup + InitAd*/encount*(ad1[7]*/X[7] + /ad1[7]*X[7])
+end module

@@ -1,0 +1,6 @@
+module clock4 (rst, clk, en: c[3..0])
+	c[0] := /c[0] on clk reset when rst enabled when en
+	c[1] := /c[1] on /c[0] reset when rst enabled when en
+   c[2] := /c[2] on /c[1] reset when rst enabled when en
+   c[3] := /c[3] on /c[2] reset when rst enabled when en
+end module
